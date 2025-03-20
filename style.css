@@ -1,0 +1,18 @@
+.container-xs{
+    max-width: 800px;
+    margin: auto;
+}
+
+.btn{
+    transition: none !important;  
+    animation: none !important;   
+    box-shadow: none !important; 
+    border-radius: 0; 
+}
+.btn:hover{
+    background-color: white;
+}
+
+body{
+    background-image: url(img/bg.png);
+}
