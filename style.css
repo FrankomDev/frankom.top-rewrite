@@ -16,3 +16,13 @@
 body{
     background-image: url(img/bg.png);
 }
+
+.line{
+    margin-top: -15px;
+}
+
+
+a{
+    text-decoration: none;
+    color: black;
+}
