@@ -63,7 +63,7 @@
                     echo '<a href=ogloszenie.php?p=' . $row['Field'] . '>' . '<p class="h4 font-monospace fw-bold">' . $row['Field'] . "</p> </a> <br>";
                 }
             } else {
-                echo "Brak postów";
+                echo "<center> <p class=h4 font-monospace fw-bold>Brak postów</p> </center>";
             }
 
 

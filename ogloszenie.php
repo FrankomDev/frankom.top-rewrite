@@ -57,16 +57,23 @@
                 die("Connection failed: " . $conn->connect_error);
             }
             if ($dziala){
-                $sql = "SELECT $post FROM testowe";
-                $result = $conn->query($sql);
+                $result = $conn->query("SHOW COLUMNS FROM `testowe` LIKE '$post'");
 
-                if ($result) {
-                    while ($row = $result->fetch_assoc()) {
-                        echo '<center> <p class="h4 font-monospace">' . $row[$post] . "</p> </center> <br>";
-                    }
-                } else {
-                    echo "error";
-                }
+             if ($result->num_rows > 0) {
+                     
+                 $sql = "SELECT $post FROM testowe";
+                 $result = $conn->query($sql);
+
+                 if ($result) {
+                     while ($row = $result->fetch_assoc()) {
+                         echo '<center> <p class="h4 font-monospace">' . $row[$post] . "</p> </center> <br>";
+                     }
+                 } else {
+                     echo "error";
+                 }
+             } else {
+                 echo '<center> <br> <br> <br> <p class="h3 font-monospace fw-bold">A ty co panie haker!</p> <br> <br> <br> </center>';
+             }	
             }
 
             $conn->close();
