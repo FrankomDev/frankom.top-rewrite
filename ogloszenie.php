@@ -35,18 +35,42 @@
         </div>
 
         <div class="container-xs p-3 bg-danger border border-5 border-dark border-dashed mt-2" style="border-style: dashed !important;">
-            <center>
-            <br>
-            <p class="h3 font-monospace fw-bold">sieć społecznościowa frankom.top</p>
-            <p class="h4 font-monospace fw-bold">A.K.A wasil network</p>
-            <br>
-            <br>
-            <p class="font-monospace fw-bold">siemano, witaj na frankom.top i pozostań z nami na dłużej!</p>
-            <p class="font-monospace fw-bold">trzymaj sie, Pozdro!</p>
-            <br>
-            <br>
-            <img src="gifs/emailbest.gif"> <img src="gifs/money.gif"> <img src="gifs/linux.gif">
-            </center>
+            
+        <?php
+            if (isset($_GET['p'])) {
+                $post = $_GET['p'];
+                $dziala = True;
+                echo '<center> <br> <p class="h3 font-monospace fw-bold">' . $post . '</p> <br> <br> </center>';
+            } else {
+                $dziala = False;
+                echo '<center> <br> <br> <br> <p class="h3 font-monospace fw-bold">Prosze tu nie zaglądać!</p> <br> <br> <br> </center>';
+            }
+
+            $server = 'localhost';
+            $user = 'root';
+            $password = '123';
+            $dbName = 'ogloszenia';
+
+            $conn = new mysqli($server, $user, $password, $dbName);
+
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+            if ($dziala){
+                $sql = "SELECT $post FROM testowe";
+                $result = $conn->query($sql);
+
+                if ($result) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo '<center> <p class="h4 font-monospace">' . $row[$post] . "</p> </center> <br>";
+                    }
+                } else {
+                    echo "error";
+                }
+            }
+
+            $conn->close();
+            ?>
         </div>
 
         <div class="container-xs p-3 bg-danger border border-5 border-dark border-dashed mt-2" style="border-style: dashed !important;">
