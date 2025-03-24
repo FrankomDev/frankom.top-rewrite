@@ -40,7 +40,8 @@
             if (isset($_GET['p'])) {
                 $post = $_GET['p'];
                 $dziala = True;
-                echo '<center> <br> <p class="h3 font-monospace fw-bold">' . $post . '</p> <br> <br> </center>';
+                $postFixed = str_replace('_', ' ', $post);
+                echo '<center> <br> <p class="h3 font-monospace fw-bold">' . $postFixed . '</p> <br> <br> </center>';
             } else {
                 $dziala = False;
                 echo '<center> <br> <br> <br> <p class="h3 font-monospace fw-bold">Prosze tu nie zaglądać!</p> <br> <br> <br> </center>';
