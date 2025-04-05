@@ -8,6 +8,8 @@ echo '<center>
             <p class="font-monospace fw-bold">Nasza sieć oferuje usługe czatu tekstowego!</p>
             <br>
             <strong><p class="h5 font-monospace">IRC:</strong> irc.frankom.top:6697</p>
+            <p class="font-monospace">Proponowany kanał <strong>#czat</strong></p>
+            <br>
             <br>
             <img src="gifs/e-mail.gif">
             </center>';
