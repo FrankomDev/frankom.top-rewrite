@@ -40,7 +40,7 @@ include 'header.html';
             $conn->close();
             echo '<br>
             <center>
-                <img src="gifs/banner.gif">
+                <img src="gifs/banner.gif" id="logo">
             </center>';
 
         include 'footer.html'
