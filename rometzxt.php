@@ -6,7 +6,7 @@ echo '<center>
             <br>
             <br>
             <p class="font-monospace fw-bold">bestia o mocy 3 koni, zwana również ZETKĄ!</p>
-            <p class="font-monospace fw-bold">dzięki jej niewyobrażalnej mocy przekracza 60km/h przy 9k obrotów na 4 biegu!</p>
+            <p class="font-monospace fw-bold">dzięki jej niewyobrażalnej mocy osiąga 70km/h przy zjeździe z najbardziej stromej górki, jakiej tylko się da! (gorzej z podjechaniem)</p>
             <p class="font-monospace fw-bold">świetna maszyna (nie licząc połamanej owiewki i porysowanych plastików)</p>
             <a href="/galeria.php">
             <u class="text-primary"><p class="h4 font-monospace fw-bold text-primary">GALERIA</p></u>

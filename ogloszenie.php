@@ -1,5 +1,10 @@
         <?php
-        include 'header.html';
+
+require '/usr/share/php/Dotenv/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+include 'header.html';
             if (isset($_GET['p'])) {
                 $post = $_GET['p'];
                 $dziala = True;
@@ -9,11 +14,11 @@
                 $dziala = False;
                 echo '<center> <br> <br> <br> <p class="h3 font-monospace fw-bold">Prosze tu nie zaglądać!</p> <br> <br> <br> </center>';
             }
-
-            $server = 'localhost';
-            $user = 'root';
-            $password = '123';
-            $dbName = 'ogloszenia';
+            
+            $server = $_ENV['server'];
+            $user = $_ENV['user'];
+            $password = $_ENV['password'];
+            $dbName = $_ENV['dbName'];
 
             $conn = new mysqli($server, $user, $password, $dbName);
 

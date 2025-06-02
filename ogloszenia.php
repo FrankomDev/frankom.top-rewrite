@@ -1,6 +1,10 @@
 
 <?php
 
+require '/usr/share/php/Dotenv/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 include 'header.html';
             echo '<center>
             <br>
@@ -9,10 +13,10 @@ include 'header.html';
             <img src="gifs/user.gif" class="float-end">
             </center>';
 
-            $server = 'localhost';
-            $user = 'root';
-            $password = '123';
-            $dbName = 'ogloszenia';
+            $server = $_ENV['server'];
+            $user = $_ENV['user'];
+            $password = $_ENV['password'];
+            $dbName = $_ENV['dbName'];
 
             $conn = new mysqli($server, $user, $password, $dbName);
 
