@@ -50,3 +50,23 @@ body{
     color: black;
     text-decoration: none;
 }
+
+.post{
+    text-decoration: underline;
+    color: black;
+    font-family: monospace;
+    color: wheat;
+    background-color: #00000000;
+    border: none;
+    font-size: larger;
+    margin: 5px;
+}
+
+.post:hover{
+    text-decoration: none;
+    font-weight: bold;
+    font-style: italic;
+    color: black;
+    background-color: white;
+    border-radius: 15px;
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>frankom.top</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body> 
+    <div style="display: flex; flex-direction: column; width: 75%; margin: auto; gap: 10px;">
+        <nav id="nav" class="box" style="display: flex; justify-content: center;">
+            <a href="/"> <button>main</button> </a>
+            <a href="/hardware"> <button>hardware</button> </a>
+            <a href="/blog"> <button>blog</button> </a>
+            <a href="/socials"> <button>socials</button> </a>
+        </nav>
+
+        <div id="msg" class="box" style="font-size: larger;">
+            <h1>Blog</h1>
+            <!--<a href="#"><button class="post">29.11.2025 - Blog testowy</button></a><br>
+            <a href="#"><button class="post">29.11.2025 - Blog testowy</button></a><br>-->
+            {% for post in posts %}
+                <a href="/blog/{{post[2]}}"><button class="post">{{post[0]}} - {{post[1]}}</button></a><br>
+            {% endfor %}
+        </div>
+
+    </div>
+    
+</body>
+</html>
