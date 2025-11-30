@@ -7,8 +7,19 @@
     <link rel="stylesheet" href="/static/style.css">
 </head>
 
-<body> 
-    <div style="display: flex; flex-direction: column; width: 75%; margin: auto; gap: 10px;">
+<body>
+    <div class="box" id="popup">
+        <h3>admin login</h3>
+        <form action="/admin" method="POST">
+            <input type="password" placeholder="password" id="passwd" name="passwd">
+            <br><br>
+            <p id="wrong-pwd" style="font-size: large; font-family: monospace; color: red; display: none;">Wrong Password!</p>
+            <button type="submit">[login]</button>
+            <button type="button" onclick="cancel_click()">[cancel]</button>
+        </form>
+    </div>
+    
+    <div id="main-to-hide" style="display: flex; flex-direction: column; width: 75%; margin: auto; gap: 10px;">
         <nav id="nav" class="box" style="display: flex; justify-content: center;">
             <a href="/"> <button>main</button> </a>
             <a href="/hardware"> <button>hardware</button> </a>
@@ -17,15 +28,41 @@
         </nav>
 
         <div id="msg" class="box" style="font-size: larger;">
+            <p style="float: right; cursor: pointer;" onclick="admin_click()">admin</p>
             <h1>Blog</h1>
             <!--<a href="#"><button class="post">29.11.2025 - Blog testowy</button></a><br>
             <a href="#"><button class="post">29.11.2025 - Blog testowy</button></a><br>-->
             {% for post in posts %}
                 <a href="/blog/{{post[2]}}"><button class="post">{{post[0]}} - {{post[1]}}</button></a><br>
             {% endfor %}
+            <a href="#">
+            </a>
         </div>
-
     </div>
-    
+    <script>
+        var param = new URLSearchParams(window.location.search).get("e")
+        if (param==1){
+            document.getElementById("main-to-hide").style.display = "none";
+            document.getElementById("popup").style.display = "block";
+            document.getElementById("passwd").value = "";
+            document.getElementById("wrong-pwd").style.display = "block";
+        }
+
+        function admin_click(){
+            document.getElementById("main-to-hide").style.display = "none";
+            document.getElementById("popup").style.display = "block";
+            document.getElementById("passwd").value = "";
+        }
+        function cancel_click(){
+            if (param==1){
+                window.location.href = "/blog"
+            }else{
+                document.getElementById("main-to-hide").style.display = "flex";
+                document.getElementById("popup").style.display = "none";
+            }
+        }
+
+    </script>
+
 </body>
 </html>

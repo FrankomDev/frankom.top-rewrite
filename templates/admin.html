@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>frankom.top</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body> 
+    <div style="display: flex; flex-direction: column; width: 75%; margin: auto; gap: 10px;">
+        <nav id="nav" class="box" style="display: flex; justify-content: center;">
+            <a href="/"> <button>main</button> </a>
+            <a href="/hardware"> <button>hardware</button> </a>
+            <a href="/blog"> <button>blog</button> </a>
+            <a href="/socials"> <button>socials</button> </a>
+        </nav>
+
+        <div id="msg" class="box" style="font-size: larger; text-align: center;">
+            <h1>Welcome admin!</h1>
+            <form action="/admin/publish", method="POST">
+                <input autocomplete="off" id="post-title" name="post-title" style="font-size: large;" placeholder="title"><br><br>
+                <textarea id="post-content" name="post-content" style="font-size: large;" placeholder="content"></textarea><br><br>
+                <button style="font-size: large;" type="submit">Post</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
