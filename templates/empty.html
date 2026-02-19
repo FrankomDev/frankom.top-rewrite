@@ -1,0 +1,18 @@
+{% include "pre/header.html" %}
+
+<style>
+    main div {
+      flex: 100%;
+      padding: 10px;
+      font-size: large;
+    }
+</style>
+
+<main>
+    <div class="block">
+        <h3 style="text-align: center;">{{data[0]}}</h3>
+        <p>{{data[1] | safe}}</p>
+    </div>
+</main>
+
+{% include "pre/footer.html" %}

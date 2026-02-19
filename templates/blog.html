@@ -1,0 +1,46 @@
+{% include "pre/header.html" %}
+
+<main>
+
+    <style>
+        main #left {
+          flex: 30%;
+          text-align: center;
+          padding: 10px;
+        }
+        main #right {
+          flex: 70%;
+          padding: 10px;
+          font-size: large;
+        }
+        ul a {
+          color: white;
+          text-decoration: none;
+        }
+        ul a li:hover {
+          text-decoration: underline;
+        }
+    </style>
+
+    <div id="left" class="block">
+        <p>"shit in my mind" - basically my blog, enjoy!</p>
+        <img src="static/cat.webp" alt="cat zzzz" width="70%">
+    </div>
+
+    <div id="right" class="block" style="display: flex; flex-direction: column;">
+        <p>i would write here from time to time... <br>
+        (if i won't forget) <br>
+        if anyone care date format dd.mm.yyyy</p>
+        <ul>
+            {% for i in data %}
+            <a href="/blog/{{i[1]}}">
+                <li>{{i[0]}}</li>
+            </a>
+            {% endfor %}
+        </ul>
+        <img src="static/fire.gif" alt="fire" style="margin-top: auto;" width="100%">
+    </div>
+
+</main>
+
+{% include "pre/footer.html" %}

@@ -1,0 +1,58 @@
+{% include "pre/header.html" %}
+
+<style>
+    main #left {
+      text-align: center;
+      flex: 20%;
+    }
+    main #right {
+      flex: 80%;
+      padding: 10px;
+      font-size: large;
+    }
+    #pfp {
+      border-radius: 100%;
+      border-style: solid;
+      border-color: white;
+      border-width: 2px;
+    }
+    main #right a {
+      color: gray;
+      font-weight: bold;
+    }
+</style>
+
+        <main>
+            <div id="left" class="block">
+                <h1>Frankom</h1>
+                <img alt="pfp" src="static/me.png" id="pfp" width="160px">
+                <p id="age">age</p>
+            </div>
+
+            <div id="right" class="block">
+                <p>welcome to my site! i'm frankom so just regular creature on earth
+                <br>i enjoy nerdy computer stuff like programming, servers, operating systems, etc... <strong>(i use arch)</strong>
+                <br>i also ride motorcycle</p>
+                <img src="static/tux.gif" alt="tux" style="float: right; display: inline;">
+
+                <p>i made this site 4fun so nice if you may enjoy it!!
+                <br>read other pages many cool stuff here</p>
+
+                <p>so what more you want to know >:(
+                <br>you can view my <a href="https://github.com/FrankomDev" target="_blank">github</a> instead :D</p>
+                <img src="static/buttons/needsleep.gif" alt="need sleep">
+            </div>
+        </main>
+        <script>
+            let item = document.getElementById("age");
+            let birthdate = new Date("12/05/2009");
+            function display_age() {
+                let test = (new Date() - birthdate) / (1000*3600*24*365.25);
+                test = test.toFixed(10)
+                item.innerText = "age: " + test;
+                requestAnimationFrame(display_age);
+            }
+            display_age();
+        </script>
+
+{% include "pre/footer.html" %}
