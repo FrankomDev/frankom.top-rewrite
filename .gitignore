@@ -1,5 +1,5 @@
-/.env
-/.idea
-/.venv
 /database.db
-/test.py
+/.env
+/__pycache__/
+/venv/
+/static/uploads/

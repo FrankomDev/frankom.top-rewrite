@@ -1,68 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>frankom.top</title>
-    <link rel="stylesheet" href="/static/style.css">
-</head>
+{% include "pre/header.html" %}
 
-<body>
-    <div class="box" id="popup">
-        <h3>admin login</h3>
-        <form action="/admin" method="POST">
-            <input type="password" placeholder="password" id="passwd" name="passwd">
-            <br><br>
-            <p id="wrong-pwd" style="font-size: large; font-family: monospace; color: red; display: none;">Wrong Password!</p>
-            <button type="submit">[login]</button>
-            <button type="button" onclick="cancel_click()">[cancel]</button>
-        </form>
+<main>
+
+    <style>
+        main #left {
+          flex: 30%;
+          text-align: center;
+          padding: 10px;
+        }
+        main #right {
+          flex: 70%;
+          padding: 10px;
+          font-size: large;
+        }
+        ul a {
+          color: white;
+          text-decoration: none;
+        }
+        ul a li:hover {
+          text-decoration: underline;
+        }
+    </style>
+
+    <div id="left" class="block">
+        <p>"shit in my mind" - basically my blog, enjoy!</p>
+        <img src="static/cat.webp" alt="cat zzzz" width="70%">
     </div>
-    
-    <div id="main-to-hide" style="display: flex; flex-direction: column; width: 75%; margin: auto; gap: 10px;">
-        <nav id="nav" class="box" style="display: flex; justify-content: center;">
-            <a href="/"> <button>main</button> </a>
-            <a href="/hardware"> <button>hardware</button> </a>
-            <a href="/blog"> <button>blog</button> </a>
-            <a href="/socials"> <button>socials</button> </a>
-        </nav>
 
-        <div id="msg" class="box" style="font-size: larger;">
-            <p style="float: right; cursor: pointer;" onclick="admin_click()">admin</p>
-            <h1>Blog</h1>
-            <!--<a href="#"><button class="post">29.11.2025 - Blog testowy</button></a><br>
-            <a href="#"><button class="post">29.11.2025 - Blog testowy</button></a><br>-->
-            {% for post in posts %}
-                <a href="/blog/{{post[2]}}"><button class="post">{{post[0]}} - {{post[1]}}</button></a><br>
-            {% endfor %}
-            <a href="#">
+    <div id="right" class="block" style="display: flex; flex-direction: column;">
+        <p>i would write here from time to time... <br>
+        (if i won't forget) <br>
+        if anyone care date format dd.mm.yyyy</p>
+        <ul>
+            {% for i in data %}
+            <a href="/blog/{{i[1]}}">
+                <li>{{i[0]}}</li>
             </a>
-        </div>
+            {% endfor %}
+        </ul>
+        <img src="static/fire.gif" alt="fire" style="margin-top: auto;" width="100%">
     </div>
-    <script>
-        var param = new URLSearchParams(window.location.search).get("e")
-        if (param==1){
-            document.getElementById("main-to-hide").style.display = "none";
-            document.getElementById("popup").style.display = "block";
-            document.getElementById("passwd").value = "";
-            document.getElementById("wrong-pwd").style.display = "block";
-        }
 
-        function admin_click(){
-            document.getElementById("main-to-hide").style.display = "none";
-            document.getElementById("popup").style.display = "block";
-            document.getElementById("passwd").value = "";
-        }
-        function cancel_click(){
-            if (param==1){
-                window.location.href = "/blog"
-            }else{
-                document.getElementById("main-to-hide").style.display = "flex";
-                document.getElementById("popup").style.display = "none";
-            }
-        }
+</main>
 
-    </script>
-
-</body>
-</html>
+{% include "pre/footer.html" %}

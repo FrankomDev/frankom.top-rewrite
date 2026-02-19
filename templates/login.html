@@ -1,0 +1,30 @@
+{% include "pre/header.html" %}
+
+<style>
+    main div {
+      padding: 10px;
+      flex: 100%;
+      text-align: center;
+      font-size: large;
+    }
+    main input, main button {
+      background: none;
+      font-size: large;
+      color: white;
+      border-color: gray;
+    }
+</style>
+
+<main>
+    <div class="block">
+        <h3>login to admin panel ;O</h3>
+        <form action="/admin" method="post">
+            <input type="password" id="password" name="password" placeholder="password">
+            <br> <br>
+            <button type="submit">:D</button>
+        </form>
+    </div>
+
+</main>
+
+{% include "pre/footer.html" %}

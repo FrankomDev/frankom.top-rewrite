@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>frankom.top</title>
+
+    <style>
+      .block {
+        width: 50%;
+        background-color: black;
+        border-color: white;
+        border-style: dashed;
+        color: gray;
+        font-family: monospace;
+        padding: 10px;
+        font-size: large;
+        display: none;
+        margin: auto;
+      }
+      body {
+        font-family: monospace;
+      }
+      h1, h2 {
+        text-align: center;
+      }
+      div button {
+        font-size: large;
+      }
+      #btn_div {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+      }
+      #container input, #container textarea {
+        font-size: large;
+      }
+    </style>
+    
+  </head>
+  <body bgcolor="gray">
+    <h1>welcome admin!</h1>
+    <h2>what are we doing today?</h2>
+    <br>
+    <div id="btn_div">
+      <button onclick="blog()">blog</button>
+      <button onclick="projects()">projects</button>
+      <button onclick="guestbook()">guestbook</button>
+    </div>
+    <div id="container" style="font-size: large;">
+
+    </div>
+
+    <div id="preview_box" class="block">
+      <h3 id="prev_title" style="text-align: center;">title</h3>
+      <p id="prev_content">content</p>
+    </div>
+
+    <script src="/static/admin.js"></script>
+
+  </body>
+</html>

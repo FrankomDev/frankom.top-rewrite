@@ -1,64 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>frankom.top</title>
-    <link rel="stylesheet" href="/static/style.css">
-</head>
-<!-- https://coolors.co/palette/0f0606-200b0b-2f0000-490000-650000 -->
+{% include "pre/header.html" %}
 
-<!--<body style="background-color: #0F0606;">-->
-<body> 
-    <div style="display: flex; flex-direction: column; width: 75%; margin: auto; gap: 10px;">
-        <!--<nav class="box" style="width: 70%; margin: auto;">-->
-        <nav id="nav" class="box" style="display: flex; justify-content: center;">
-            <a href="/"> <button>main</button> </a>
-            <a href="/hardware"> <button>hardware</button> </a>
-            <a href="/blog"> <button>blog</button> </a>
-            <a href="/socials"> <button>socials</button> </a>
-        </nav>
+<style>
+    main #left {
+      text-align: center;
+      flex: 20%;
+    }
+    main #right {
+      flex: 80%;
+      padding: 10px;
+      font-size: large;
+    }
+    #pfp {
+      border-radius: 100%;
+      border-style: solid;
+      border-color: white;
+      border-width: 2px;
+    }
+    main #right a {
+      color: gray;
+      font-weight: bold;
+    }
+</style>
 
-        <!--<div style="display: flex; margin: auto; width: 70%;">-->
-        <div style="display: flex; gap: 10px;">
-
-            <div class="box" style="flex: 25%;">
-                <h1 style="color: wheat; text-align: center; font-family: story_script;">Frankom</h1>
-                <img src="/static/pfp.png" alt="pfp" width="70%" id="pfp">
-                <p style="color: wheat; padding: 5px; font-size: large; font-family: monospace;">
-                    name: <span style="color: white;">Franek</span>
-                    <br>age: <span id="age" style="color: white;"></span>
-                    <br>location: <span style="color: white;">Poland</span>
-                </p>
-            </div>
- 
-            <div id="msg" class="box" style="flex: 75%; font-size: larger;">
-                <p>Welcome to my world! I'm frankom so just a regular basement creature, arch linux user and "slow" motorcyclist.
-                    <br>I like nerdy computer stuff like servers, networks, programming but the most of that <b>linux operating system</b>.
-                    <br>As it is right now I go to IT High School in Poland trying to do some cool project(s) before I'll end it.
-                </p>
-                <p>In my freetime I either do some cool shit with my friends like motorcycles cruising (with my slow but reliable 50cc) or use my pc.
-                    <br>May be boring for some people but I don't think it's like that.
-                </p>
-                <p>When I think about my future I still don't know what will I do...
-                    <br>I want to stay in IT industry but job market is so bad at the moment.
-                    <br>I'm not sure if I would go college but if I will go then it definitely would be computer science/engineering or cyber security. 
-                </p>
+        <main>
+            <div id="left" class="block">
+                <h1>Frankom</h1>
+                <img alt="pfp" src="static/me.png" id="pfp" width="160px">
+                <p id="age">age</p>
             </div>
 
-        </div>
-    </div>
-    
-    <script>
-        let item = document.getElementById("age");
-        let birthdate = new Date("12/05/2009");
-        function display_age() {
-            let test = (new Date() - birthdate) / (1000*3600*24*365.25);
-            item.innerText = test;
-            requestAnimationFrame(display_age);
-        }
-        display_age();
-    </script>
+            <div id="right" class="block">
+                <p>welcome to my site! i'm frankom so just regular creature on earth
+                <br>i enjoy nerdy computer stuff like programming, servers, operating systems, etc... <strong>(i use arch)</strong>
+                <br>i also ride motorcycle</p>
+                <img src="static/tux.gif" alt="tux" style="float: right; display: inline;">
 
-</body>
-</html>
+                <p>i made this site 4fun so nice if you may enjoy it!!
+                <br>read other pages many cool stuff here</p>
+
+                <p>so what more you want to know >:(
+                <br>you can view my <a href="https://github.com/FrankomDev" target="_blank">github</a> instead :D</p>
+                <img src="static/buttons/needsleep.gif" alt="need sleep">
+            </div>
+        </main>
+        <script>
+            let item = document.getElementById("age");
+            let birthdate = new Date("12/05/2009");
+            function display_age() {
+                let test = (new Date() - birthdate) / (1000*3600*24*365.25);
+                test = test.toFixed(10)
+                item.innerText = "age: " + test;
+                requestAnimationFrame(display_age);
+            }
+            display_age();
+        </script>
+
+{% include "pre/footer.html" %}

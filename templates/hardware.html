@@ -1,87 +1,91 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>frankom.top</title>
-    <link rel="stylesheet" href="/static/style.css">
-</head>
+{% include "pre/header.html" %}
 
-<body>
-    <div style="display: flex; flex-direction: column; width: 75%; margin: auto; gap: 10px;">
-        <!--<nav class="box" style="width: 70%; margin: auto;">-->
-        <nav id="nav" class="box" style="display: flex; justify-content: center;">
-            <a href="/"> <button>main</button> </a>
-            <a href="/hardware"> <button>hardware</button> </a>
-            <a href="/blog"> <button>blog</button> </a>
-            <a href="/socials"> <button>socials</button> </a>
-        </nav>
+<style>
+    main #left {
+      flex: 40%; 
+      text-align: center;
+      font-size: large;
+    }
+    main #right {
+      flex: 60%;
+      padding: 10px;
+      font-size: large;
+    }
+    figure img {
+      width: 100%;
+      height: 100%;
+    }
+</style>
 
-        <div style="display: flex; gap: 10px;">
+<main>
+    <div id="left" class="block">
+        <figure>
+            <img src="static/shelf.png" alt="hardware shelf">
+            <figcaption>my awesome shelf</figcaption>
+        </figure>
+        <br>
+        <figure>
+            <img src="static/mp3.png" alt="mp3 player">
+            <figcaption>my mp3 player <br> (sorry for messy cable)</figcaption>
+        </figure>
+    </div>
 
-            <div class="box" style="flex: 20%;">
-                <img src="/static/pfp.png" width="50">
-            </div>
+    <div id="right" class="block">
+        <b>main laptop:</b>
+        <ul>
+            <li>Lenovo IdeaPad L340-17IRH</li>
+            <li>Intel Core i7-9750hf</li>
+            <li>NVIDIA GTX 1650</li>
+            <li>32GB Ram DDR4</li>
+            <li>Kingston 512GB NVMe</li>
+            <li>Arch Linux</li>
+            <li><b style="padding: 0;">periphery:</b>
+                 <ul>
+                     <li>Samsung SyncMaster S22B350</li>
+                     <li>Krux Atax RGB Outemu Brown</li>
+                     <li>Razer Basilisk Essential</li>
+                     <li>Sony WH-CH520</li>
+                     <li>Trust GXT 232</li>
+                 </ul>
+            </li> 
+        </ul>
 
-            <div id="msg" class="box" style="font-size: larger; flex: 60%;">
-                <h1>Hardware</h1>
-                <b>main laptop:</b>
-                <ul style="font-family: monospace; color: wheat;">
-                    <li>Lenovo IdeaPad L340-17IRH</li>
-                    <li>Intel Core i7-9750hf</li>
-                    <li>NVIDIA GTX 1650</li>
-                    <li>32GB Ram DDR4</li>
-                    <li>Kingston 512GB NVMe</li>
-                    <li>Arch Linux</li>
-                    <li><b style="padding: 0;">Periphery:</b>
-                        <ul>
-                            <li>Samsung SyncMaster S22B350</li>
-                            <li>Krux Atax RGB Outemu Brown</li>
-                            <li>Razer Basilisk Essential</li>
-                            <li>Sony WH-CH520</li>
-                            <li>Trust GXT 232</li>
-                        </ul>
-                    </li>
-                </ul>
+        <b>second laptop:</b>
+        <ul>
+            <li>HP 255 G8</li>
+            <li>Ryzen 3 5300u</li>
+            <li>8GB Ram DDR4</li>
+            <li>256GB NVMe</li>
+            <li>Arch Linux</li>
+        </ul>
 
-                <b>second laptop:</b>
-                <ul style="font-family: monospace; color: wheat;">
-                    <li>HP 255 G8</li>
-                    <li>Ryzen 3 5300u</li>
-                    <li>8GB Ram DDR4</li>
-                    <li>256GB NVMe</li>
-                    <li>Arch Linux</li>
-                </ul>
+        <b>server:</b>
+        <ul>
+            <li>Dell Optiplex 5040 SFF</li>
+            <li>Intel Core i5-6500</li>
+            <li>8GB Ram DDR3</li>
+            <li>64GB SSD</li>
+            <li>320GB HDD</li>
+            <li>Arch Linux</li>
+        </ul>
 
-                <b>server:</b>
-                <ul style="font-family: monospace; color: wheat;">
-                    <li>Dell Optiplex 5040 SFF</li>
-                    <li>Intel Core i5-6500</li>
-                    <li>8GB Ram DDR3</li>
-                    <li>64GB SSD</li>
-                    <li>320GB HDD</li>
-                    <li>Arch Linux</li>
-                </ul>
+        <b>phone:</b>
+        <ul>
+            <li>Realme 9i 4g</li>
+            <li>4GB Ram</li>
+            <li>128GB Storage</li>
+        </ul>
 
-                <b>phone:</b>
-                <ul style="font-family: monospace; color: wheat;">
-                    <li>Realme 9i 4g</li>
-                    <li>4GB Ram</li>
-                    <li>128GB Storage</li>
-                </ul>
+        <b>mp3 player:</b>
+        <ul>
+            <li>Philips GoGear SA3125</li>
+            <li>KZ EDX</li>
+        </ul>
 
-                <b>music:</b>
-                <ul style="font-family: monospace; color: wheat;">
-                    <li>Philips GoGear SA3125</li>
-                    <li>KZ EDX</li>
-                </ul>
-            </div>
+        <br>
+        <b>and much more other shit stuff.....</b>
 
-            <div class="box" style="flex: 20%;">
-                <img src="/static/pfp.png" width="50">
-            </div>
-        
-        </div> 
-    </div> 
-</body>
-</html>
+    </div>
+</main>
+
+{% include "pre/footer.html" %}

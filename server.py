@@ -1,53 +1,10 @@
-from flask import Flask, render_template, request, redirect, make_response
-import sqlite3
-import random
-from datetime import datetime
-
-password : str = ''
-tokens : list = []
-
-def read_env() -> None:
-    global password
-    with open(".env", "r") as f:
-        password=f.readline()
-
-def configure_db() -> None:
-    conn = sqlite3.connect("database.db")
-    cursor = conn.cursor()
-    cursor.execute("CREATE TABLE IF NOT EXISTS blog (id num, date text, title text, content text)")
-    conn.commit()
-    conn.close()
-
-def get_posts() -> list:
-    conn = sqlite3.connect("database.db")
-    cursor = conn.cursor()
-    posts = cursor.execute("SELECT date, title, id FROM blog ORDER BY id DESC").fetchall()
-    conn.close()
-    return posts
-
-def get_post_by_id(id : int) -> list:
-    conn = sqlite3.connect("database.db")
-    cursor = conn.cursor()
-    posts = cursor.execute("SELECT title, date, content FROM blog WHERE id=?", (id,)).fetchone()
-    conn.close()
-    return posts
-
-def get_last_id() -> int:
-    conn = sqlite3.connect("database.db")
-    cursor = conn.cursor()
-    id = cursor.execute("SELECT id FROM blog ORDER BY id DESC").fetchone()
-    conn.close()
-    return id[0]
-
-def publish_post(title : str, content : str, id : int) -> None:
-    conn = sqlite3.connect("database.db")
-    cursor = conn.cursor()
-    date = datetime.now().strftime("%d %b %Y")
-    cursor.execute("INSERT INTO blog VALUES (?, ?, ?, ?)", (id, date, title, content))
-    conn.commit()
-    conn.close()
+from flask import Flask, render_template, request, redirect, session, jsonify
+import database as db
+import login as lgn
+import os
 
 app = Flask(__name__)
+app.secret_key = os.getenv("PASSWORD")
 
 @app.route("/")
 def index():
@@ -57,42 +14,143 @@ def index():
 def hardware():
     return render_template("hardware.html")
 
-@app.route("/blog")
+@app.route("/links")
+def links():
+    return render_template("links.html")
+
+@app.route("/blog", methods={"GET", "POST"})
 def blog():
-    return render_template("blog.html", posts=get_posts())
+    if request.method == "GET":
+        if request.args.get("api"):
+            return blog.get_data()
+        else:
+            return render_template("blog.html", data=blog.get_data())
+    elif request.method == "POST":
+        if session.get("admin"):
+            try:
+                title = request.form["title"]
+                content = request.form["content"]
+                if title and content:
+                    blog.post_blog(title, content)
+                    return redirect("/blog", code=302)
+            except Exception:
+                pass
+        return "nah", 418
 
-@app.route("/blog/<int:id>")
+@app.route("/blog/<id>", methods={"GET", "DELETE", "POST"})
 def blog_post(id):
-    return render_template("post.html", post=get_post_by_id(id))
+    if request.method == "GET":
+        try:
+            if request.args.get("api"):
+                return jsonify(blog.get_content(id))
+            else:
+                return render_template("empty.html", data=blog.get_content(id))
+        except Exception:
+            return render_template("empty.html", data="")
+    elif request.method == "DELETE":
+        if session.get("admin"):
+            blog.remove_content(id)
+            return "ok"
+    elif request.method == "POST":
+        if session.get("admin"):
+            try:
+                title = request.form["title"]
+                content = request.form["content"]
+                if title and content:
+                    blog.update_content(id, title, content)
+            except Exception:
+                pass
+            return render_template("empty.html", data=blog.get_content(id))
+    return "nah", 418
 
-@app.route("/socials")
-def socials():
-    return render_template("socials.html")
+@app.route("/guestbook", methods={"GET", "POST"})
+def guestbook():
+    if request.method == "GET":
+        if request.args.get("api"):
+            return guestbook.get_data()
+        else:
+            return render_template("guestbook.html", data=guestbook.get_data())
+    elif request.method == "POST":
+        try:
+            username = request.form["username"]
+            message = request.form["message"]
+            if username and message:
+                guestbook.post_message(username, message)
+        except Exception:
+            pass
+        return redirect("/guestbook", code=302)
 
-@app.route("/admin", methods=["POST"])
-def admin():
-    if request.form['passwd'] == password:
-        token = random.randint(111111111,999999999)
-        tokens.append(str(token))
-        resp = make_response(render_template("admin.html"))
-        resp.set_cookie("token", str(token))
-        return resp
-    else:
-        return redirect("/blog?e=1")
+@app.route("/guestbook/<id>", methods={"DELETE"})
+def del_guestbook(id):
+    if session.get("admin"):
+        guestbook.remove_content(id)
+        return "ok"
+    return "nah", 418
 
-@app.route("/admin/publish", methods=["POST"])
-def publish():
-    if request.cookies.get("token") in tokens:
-        title = request.form['post-title']
-        content = request.form['post-content']
-        id = get_last_id()+1
-        publish_post(title, content, id)
-        tokens.clear()
-        return redirect(f"/blog/{id}")
-    else:
-        return redirect("/blog")
+@app.route("/projects", methods={"GET", "POST"})
+def projects():
+    if request.method == "GET":
+        if request.args.get("api"):
+            return projects.get_data()
+        else:
+            return render_template("projects.html", data=projects.get_data())
+    elif request.method == "POST":
+        if session.get("admin"):
+            try:
+                title = request.form["title"]
+                content = request.form["content"]
+                if title and content:
+                    projects.post_project(title, content)
+                    return redirect("/projects", code=302)
+            except Exception:
+                pass
+        return "nah", 418
 
-if __name__ == "__main__":
-    read_env()
-    configure_db()
-    app.run(debug=True)
+@app.route("/projects/<id>", methods={"GET", "DELETE", "POST"})
+def project(id):
+    if request.method == "GET":
+        try:
+            if request.args.get("api"):
+                return jsonify(projects.get_content(id))
+            else:
+                return render_template("empty.html", data=projects.get_content(id))
+        except Exception:
+            return render_template("empty.html", data="")
+    elif request.method == "DELETE":
+        if session.get("admin"):
+            projects.remove_content(id)
+            return "ok"
+    elif request.method == "POST":
+        if session.get("admin"):
+            try:
+                title = request.form["title"]
+                content = request.form["content"]
+                if title and content:
+                    projects.update_content(id, title, content)
+            except Exception:
+                pass
+            return render_template("empty.html", data=projects.get_content(id))
+    return "nah", 418
+
+@app.route("/admin", methods={"GET", "POST"})
+def login():
+    if request.method == "GET":
+        if session.get("admin"):
+            return render_template("admin/admin.html")
+        return render_template("login.html")
+    elif request.method == "POST":
+        try:
+            password = request.form["password"]
+            if password:
+                if login.try_login(password):
+                    session["admin"] = True
+                    return render_template("admin/admin.html")
+        except Exception:
+            pass
+        return redirect("/admin", code=302)
+
+guestbook = db.Guestbook()
+projects = db.Projects()
+blog = db.Blog_posts()
+login = lgn.Login()
+#app.run()
