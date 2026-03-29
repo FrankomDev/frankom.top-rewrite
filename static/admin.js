@@ -140,3 +140,57 @@ function del_thing(thing, id){
     });
   }
 }
+
+function files(){
+  clear_view();
+  form = document.createElement("form");
+  form.enctype = "multipart/form-data";
+  form.method = "POST";
+  form.action = "/files";
+
+  file = document.createElement("input");
+  file.id = "file";
+  file.name = "file";
+  file.type = "file";
+  form.appendChild(file);
+  form.appendChild(document.createElement("br"));
+
+  submit = document.createElement("button");
+  submit.textContent = "upload";
+  submit.type = "submit";
+  form.appendChild(submit);
+
+  images = document.createElement("div");
+  fetch("/files")
+  .then((response) => response.json())
+  .then((data) =>{
+    for (i in data){
+      div = document.createElement("div");
+      div.classList.add("files");
+
+      img = document.createElement("img");
+      img.src = `/static/uploads/${data[i]}`;
+      img.width = 150;
+      img.height = 150;
+
+      const filename = data[i];
+      options = document.createElement("div");
+      text = document.createElement("p");
+      text.textContent = filename;
+      button = document.createElement("button");
+      button.textContent = "delete";
+      button.onclick = function(){ del_thing("/files", filename) };
+
+      div.appendChild(img);
+      options.appendChild(text);
+      options.appendChild(button);
+      div.appendChild(options);
+      images.appendChild(div);
+      images.appendChild(document.createElement("br"));
+    }
+  });
+
+  container.appendChild(form);
+  container.appendChild(document.createElement("br"));
+  container.appendChild(images);
+}

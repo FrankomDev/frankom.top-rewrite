@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, session, jsonify
 import database as db
 import login as lgn
+import files as fl
 import os
 
 app = Flask(__name__)
@@ -149,8 +150,28 @@ def login():
             pass
         return redirect("/admin", code=302)
 
+@app.route("/files", methods={"GET", "POST"})
+def files():
+    if request.method == "GET":
+        if session.get("admin"):
+            return files.get()
+        return "nah", 418
+    elif request.method == "POST":
+        if 'file' in request.files and session.get("admin"):
+            files.upload(request.files['file'])
+            return redirect("/admin", code=302)
+        return "nah", 418
+
+@app.route("/files/<name>", methods={"DELETE"})
+def file_del(name):
+    if session.get("admin"):
+        files.delete(name)
+        return "ok"
+    return "nah", 418
+
 guestbook = db.Guestbook()
 projects = db.Projects()
 blog = db.Blog_posts()
 login = lgn.Login()
+files = fl.Files()
 #app.run()
