@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>frankom.top</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <style>
+        #left {
+            flex: 30%;
+            text-align: center;
+        }
+        #left p {
+            font-size: medium;
+        }
+
+        #right {
+            flex: 70%;
+        }
+        #right b {
+            font-size: large;
+        }
+        #right b, #right p {
+            word-break: break-all;
+        }
+    </style>
+
+    <div id="container">
+
+        <span id="nav"></span>
+
+        <main>
+            <div class="block" id="left">
+                <p>be cool pls</p>
+                <form id="form">
+                    <input type="text" name="username" placeholder="username" required>
+                    <br> <br>
+                    <textarea name="message" placeholder="message" maxlength="200" required></textarea>
+                    <br> <br>
+                    <button type="submit">post</button>
+                </form>
+            </div>
+
+            <div class="block" id="right">
+            </div>
+        </main>
+
+        <span id="footer"></span>
+
+    </div>
+
+    <script src="static/main.js"></script>
+    <script src="static/guestbook.js"></script>
+</body>
+</html>

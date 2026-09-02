@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>frankom.top</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <style>
+        #left {
+            flex: 30%;
+            text-align: center;
+        }
+        #left p {
+            font-size: medium;
+        }
+
+        #right {
+            flex: 70%;
+        }
+
+        li, a {
+            font-size: large;
+            color: white;
+            font-weight: normal;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+    <div id="container">
+
+        <span id="nav"></span>
+
+        <main>
+            <div class="block" id="left">
+                <p>"shit in my mind" - basically my blog, enjoy!</p>
+                <img src="static/img/cat.webp" alt="cat zzzz" width="70%">
+            </div>
+
+            <div class="block" id="right">
+                <p>i would write here from time to time... <br>
+                (if i won't forget) <br>
+                if anyone care date format dd.mm.yyyy</p>
+
+                <ul id="list">
+                </ul>
+                <!--
+                <img src="../static/img/fire.gif" alt="fire" width="100%">
+                -->
+            </div>
+        </main>
+
+        <span id="footer"></span>
+
+    </div>
+
+    <script src="static/main.js"></script>
+    <script src="static/posts.js"></script>
+</body>
+</html>

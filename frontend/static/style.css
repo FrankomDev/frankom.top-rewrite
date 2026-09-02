@@ -1,0 +1,91 @@
+body {
+    background-color: black;
+    min-height: 100vh;
+    background-image: url(img/forest.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.block {
+    border-style: dashed;
+    border-color: white;
+
+    background-color: black;
+    color: gray;
+    font-family: monospace;
+    padding: 10px;
+}
+
+nav, footer div {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+button {
+    background-color: black;
+    color: white;
+    /*border-color: white;
+    border-style: solid;*/
+    font-family: monospace;
+    font-size: large;
+}
+
+button:hover {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+a {
+    color: gray;
+    font-weight: bold;
+}
+
+#container {
+    width: 50%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+span {
+    margin: 0;
+    padding: 0;
+}
+span img {
+    width: 100%;
+}
+
+p {
+    font-size: large;
+}
+
+footer {
+    text-align: center;
+}
+footer h3 {
+    margin-top: 5px;
+}
+footer img {
+    width: 88px;
+    height: 30px;
+}
+
+input, textarea {
+    background-color: black;
+    color: white;
+    width: 200px;
+    font-size: large;
+    font-family: monospace;
+}

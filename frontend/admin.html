@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>frankom.top</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <style>
+        #block {
+            flex: 100%;
+        }
+        #block p {
+            word-break: break-all;
+        }
+
+        #leave {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+        }
+
+        #preview {
+            display: none;
+        }
+        #title {
+            text-align: center;
+            font-size: x-large;
+        }
+        #content {
+            font-size: large;
+        }
+
+        .editor {
+            text-align: center;
+        }
+        .editor input, .editor textarea {
+            width: 90%;
+        }
+        .editor textarea {
+            height: 400px;
+        }
+
+        form input {
+            width: 90%;
+        }
+
+        .images {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+
+    <div id="container">
+
+        <nav id="nav" class="block"></nav>
+
+        <main>
+            <div class="block" id="block">
+            </div>
+        </main>
+
+        <section class="block" id="preview">
+            <h3 id="title">title</h3>
+            <span id="content">content</span>
+        </section>
+
+    </div>
+
+    <a href=".">
+        <button type="button" id="leave">leave</button>
+    </a>
+
+
+    <iframe id="ghost" name="ghost" style="display: none;"></iframe>
+    <script src="static/admin.js"></script>
+</body>
+</html>

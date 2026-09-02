@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>frankom.top</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <style>
+        #left {
+            flex: 20%;
+            text-align: center;
+        }
+        #left img {
+            border-radius: 100%;
+            border-color: lightgray;
+            border-width: 5px;
+            border-style: solid;
+
+            width: 160px;
+            height: 160px;
+        }
+
+        #right {
+            flex: 80%;
+        }
+
+        #admin {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            font-size: xx-small;
+        }
+    </style>
+
+    <div id="container">
+
+        <span id="nav"></span>
+
+        <main>
+            <div class="block" id="left">
+                <h1>frankom</h1>
+                <img src="static/img/me.png" alt="me">
+                <p id="age" style="font-size: small;">age</p>
+            </div>
+
+            <div class="block" id="right">
+                <p>welcome to my site! i'm frankom so just regular creature on earth
+                <br>i enjoy nerdy computer stuff like programming, servers, operating systems, etc... <strong>(i use arch)</strong>
+                <br>i also ride motorcycle</p>
+                <img src="static/img/tux.gif" alt="tux" style="float: right; display: inline;">
+
+                <p>i made this site 4fun so nice if you may enjoy it!!
+                <br>read other pages many cool stuff here</p>
+
+                <p>so what more you want to know >:(
+                <br>you can view my <a href="https://github.com/FrankomDev" target="_blank">github</a> instead :D</p>
+                <img src="static/img/buttons/needsleep.gif" alt="need sleep">
+            </div>
+        </main>
+
+        <span id="footer"></span>
+
+        <a href="login.html">
+            <button type="button" id="admin">admin</button>
+        </a>
+
+    </div>
+
+    <script src="static/main.js"></script>
+</body>
+</html>
