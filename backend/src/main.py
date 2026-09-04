@@ -161,6 +161,9 @@ def images_get():
     images = []
     for filename in os.listdir("img"):
         images.append(filename.split(".")[0])
+
+    images.sort()
+    images.reverse()
     return images
 
 @app.post("/api/images")

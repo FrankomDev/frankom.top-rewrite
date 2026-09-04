@@ -125,10 +125,16 @@ function images_load() {
   clear_block();
 
   let form = document.createElement("form");
-  form.enctype = "multipart/form-data";
-  form.method = "POST";
-  form.action = "api/images";
-  form.target = "ghost";
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    fetch("api/images", {
+      method: "POST",
+      body: new FormData(form)
+    }).then(response => {
+      if (response.ok)
+        images_load();
+    });
+  });
 
   let input = document.createElement("input");
   input.type = "file";

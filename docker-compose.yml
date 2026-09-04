@@ -6,8 +6,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${PASSWORD}
       MYSQL_DATABASE: frankomtop
-    volumes:
-      - ./img:/app/backend/img
     networks:
       - app
 
@@ -16,6 +14,8 @@ services:
     restart: always
     environment:
       PASSWORD: ${PASSWORD}
+    volumes:
+      - ./img/:/app/backend/img/
     networks:
       - app
 
