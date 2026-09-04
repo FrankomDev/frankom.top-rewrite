@@ -1,11 +1,11 @@
 services:
 
   db:
-    image: mysql
+    image: mariadb
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: ${PASSWORD}
-      MYSQL_DATABASE: frankomtop
+      MARIADB_ROOT_PASSWORD: ${PASSWORD}
+      MARIADB_DATABASE: frankomtop
     networks:
       - app
 
