@@ -1,6 +1,6 @@
 import os
 
-from sqlalchemy import Engine
+from sqlalchemy import Engine, Text
 from sqlmodel import Field, SQLModel, Session, create_engine, select
 
 class Database:
@@ -39,7 +39,7 @@ class Database:
         class BlogDb(SQLModel, table=True):
             id : int | None = Field(default=None, primary_key=True)
             title : str
-            content : str
+            content : str = Field(sa_type=Text)
 
         def __init__(self, session : Session) -> None:
             self.session = session
@@ -92,7 +92,7 @@ class Database:
         class ProjectsDb(SQLModel, table=True):
             id : int | None = Field(default=None, primary_key=True)
             title : str
-            content : str
+            content : str = Field(sa_type=Text)
 
         def __init__(self, session : Session) -> None:
             self.session = session
@@ -144,7 +144,8 @@ class Database:
 
     def __init__(self) -> None:
         password = os.getenv("PASSWORD")
-        self.engine : Engine = create_engine(f"mysql://root:{password}@db/frankomtop")
+        db = os.getenv("DATABASE")
+        self.engine : Engine = create_engine(f"mysql://root:{password}@{db}/frankomtop")
         SQLModel.metadata.create_all(self.engine)
         self.session : Session = Session(self.engine)
 
