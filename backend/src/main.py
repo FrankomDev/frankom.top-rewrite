@@ -46,7 +46,7 @@ class GuestbookEntry(BaseModel):
 @app.post("/api/guestbook")
 def guestbook_post(entry : GuestbookEntry):
     if entry.username != "" and entry.message != "":
-        if db.guestbook.post(entry.username, entry.message)
+        if db.guestbook.post(entry.username, entry.message):
             return JSONResponse("Posted!", 200);
         else:
             return JSONResponse("Error!", 500)
