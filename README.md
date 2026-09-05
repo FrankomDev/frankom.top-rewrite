@@ -5,6 +5,6 @@
 run:
 ```sh
 mkdir img
-docker build backend .
+docker build -t backend .
 docker compose up -d
 ```

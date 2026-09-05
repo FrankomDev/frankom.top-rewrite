@@ -46,9 +46,11 @@ class GuestbookEntry(BaseModel):
 @app.post("/api/guestbook")
 def guestbook_post(entry : GuestbookEntry):
     if entry.username != "" and entry.message != "":
-        db.guestbook.post(entry.username, entry.message)
-        return JSONResponse("ok", status_code=200);
-    return JSONResponse("Entries can't be empty!", status_code=400)
+        if db.guestbook.post(entry.username, entry.message)
+            return JSONResponse("Posted!", 200);
+        else:
+            return JSONResponse("Error!", 500)
+    return JSONResponse("Entries can't be empty!", 400)
 
 @app.get("/api/guestbook")
 def guestbook_get():
@@ -73,8 +75,10 @@ def blog_post(entry : BlogEntry, cookie : Cookies = Cookie()):
     if not validate_cookie(cookie):
         return JSONResponse("Unauthorized!", 401)
     else:
-        db.blog.post(entry.title, entry.content)
-        return JSONResponse("Posted!", 200)
+        if db.blog.post(entry.title, entry.content):
+            return JSONResponse("Posted!", 200)
+        else:
+            return JSONResponse("Error!", 500)
 
 @app.get("/api/blog")
 def blog_get():
@@ -113,8 +117,10 @@ def projects_post(entry : BlogEntry, cookie : Cookies = Cookie()):
     if not validate_cookie(cookie):
         return JSONResponse("Unauthorized!", 401)
     else:
-        db.projects.post(entry.title, entry.content)
-        return JSONResponse("Posted!", 200)
+        if db.projects.post(entry.title, entry.content):
+            return JSONResponse("Posted!", 200)
+        else:
+            return JSONResponse("Error!", 500)
 
 @app.get("/api/projects")
 def projects_get():

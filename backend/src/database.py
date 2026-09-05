@@ -14,11 +14,16 @@ class Database:
         def __init__(self, session : Session) -> None:
             self.session = session
 
-        def post(self, username : str, message : str) -> None:
+        def post(self, username : str, message : str) -> bool:
             entry = self.GuestbookDb(username=username, message=message)
-            self.session.add(entry)
-            self.session.commit()
-            self.session.refresh(entry)
+            try:
+                self.session.add(entry)
+                self.session.commit()
+                self.session.refresh(entry)
+                return True
+            except Exception:
+                self.session.rollback()
+                return False
 
         def get(self):
             data = self.session.exec(select(self.GuestbookDb).order_by(self.GuestbookDb.id.desc())).all()
@@ -44,11 +49,16 @@ class Database:
         def __init__(self, session : Session) -> None:
             self.session = session
 
-        def post(self, title : str, content : str) -> None:
+        def post(self, title : str, content : str) -> bool:
             entry = self.BlogDb(title=title, content=content)
-            self.session.add(entry)
-            self.session.commit()
-            self.session.refresh(entry)
+            try:
+                self.session.add(entry)
+                self.session.commit()
+                self.session.refresh(entry)
+                return True
+            except Exception:
+                self.session.rollback()
+                return False
 
         def get(self):
             cmd = select(self.BlogDb.id, self.BlogDb.title).order_by(self.BlogDb.id.desc())
@@ -83,10 +93,14 @@ class Database:
             else:
                 entry.title = title;
                 entry.content = content;
-                self.session.add(entry)
-                self.session.commit()
-                self.session.refresh(entry)
-                return True
+                try:
+                    self.session.add(entry)
+                    self.session.commit()
+                    self.session.refresh(entry)
+                    return True
+                except Exception:
+                    self.session.rollback()
+                    return False
 
     class Projects:
         class ProjectsDb(SQLModel, table=True):
@@ -97,11 +111,16 @@ class Database:
         def __init__(self, session : Session) -> None:
             self.session = session
 
-        def post(self, title : str, content : str) -> None:
+        def post(self, title : str, content : str) -> bool:
             entry = self.ProjectsDb(title=title, content=content)
-            self.session.add(entry)
-            self.session.commit()
-            self.session.refresh(entry)
+            try:
+                self.session.add(entry)
+                self.session.commit()
+                self.session.refresh(entry)
+                return True
+            except Exception:
+                self.session.rollback()
+                return False
 
         def get(self):
             cmd = select(self.ProjectsDb.id, self.ProjectsDb.title).order_by(self.ProjectsDb.id.desc())
@@ -136,10 +155,14 @@ class Database:
             else:
                 entry.title = title;
                 entry.content = content;
-                self.session.add(entry)
-                self.session.commit()
-                self.session.refresh(entry)
-                return True
+                try:
+                    self.session.add(entry)
+                    self.session.commit()
+                    self.session.refresh(entry)
+                    return True
+                except Exception:
+                    self.session.rollback()
+                    return False
 
 
     def __init__(self) -> None:
